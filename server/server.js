@@ -3,6 +3,8 @@ const app = express();
 
 const path = require("path");
 
+const { logger } = require("./middleware/logger");
+
 const PORT = process.env.PORT || 3500
 
 // Middleware that allows app to receive and parse JSON

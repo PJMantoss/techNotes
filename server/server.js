@@ -5,6 +5,9 @@ const path = require("path");
 
 const PORT = process.env.PORT || 3500
 
+// Middleware that allows app to receive and parse JSON
+app.use(express.json());
+
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 app.use("/", require("./routes/root"));

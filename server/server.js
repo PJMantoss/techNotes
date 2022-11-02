@@ -27,6 +27,8 @@ app.use("*", (req, res) => {
     }else{
         res.type("txt").send("404 Not Found");
     }
-})
+});
+
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

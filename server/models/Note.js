@@ -30,6 +30,8 @@ const noteSchema = new mongoose.Schema(
     }
 );
 
-noteSchema.plugin(AutoIncrement, {})
+noteSchema.plugin(AutoIncrement, {
+    inc_field: "ticket"
+})
 
 module.exports = mongoose.model("Note", noteSchema);

@@ -11,14 +11,16 @@ const cookieParser = require("cookie-parser");
 
 const cors = require("cors");
 
+const corsOptions = require("./config/corsOptions");
+
 const PORT = process.env.PORT || 3500
 
 app.use(logger);
 
+app.use(cors(corsOptions));
+
 // Built-in Middleware that allows app to receive and parse JSON
 app.use(express.json());
-
-app.use(cors());
 
 app.use(cookieParser());
 

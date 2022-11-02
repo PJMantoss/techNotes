@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const AutoIncrement = require("mongoose-sequence")(mongoose);
+
 const noteSchema = new mongoose.Schema(
     {
         user: {
@@ -27,5 +29,7 @@ const noteSchema = new mongoose.Schema(
         timestamp: true
     }
 );
+
+noteSchema.plugin(AutoIncrement, {})
 
 module.exports = mongoose.model("Note", noteSchema);

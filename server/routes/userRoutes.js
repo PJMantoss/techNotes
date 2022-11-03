@@ -7,4 +7,4 @@ router.route("/")
     .patch()
     .delete();
 
-module.exports = userRoutes;
+module.exports = router;

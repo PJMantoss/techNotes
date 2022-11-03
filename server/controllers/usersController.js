@@ -11,7 +11,7 @@ const getAllUsers = asyncHandler(async = (req, res) => {});
 // @desc - Create new users
 // @route POST /users 
 // @access Private
-const createNewUsers = asyncHandler(async = (req, res) => {});
+const createNewUser = asyncHandler(async = (req, res) => {});
 
 // @desc - Update user
 // @route PATCH /users 
@@ -22,3 +22,10 @@ const updateUser = asyncHandler(async = (req, res) => {});
 // @route DELETE /users 
 // @access Private
 const deleteUser = asyncHandler(async = (req, res) => {});
+
+module.exports = {
+    getAllUsers,
+    createNewUser,
+    updateUser,
+    deleteUser
+};

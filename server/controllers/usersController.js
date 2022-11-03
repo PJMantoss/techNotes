@@ -43,6 +43,12 @@ const createNewUser = asyncHandler(async = (req, res) => {
 
     // Create and store new user
     const user = await User.create(userObj);
+
+    if(user){ // user created
+        res.status(201).json({ message: `New user ${username} created` })
+    }else{
+        res.status(400).json({ message: "Invalid user data received" });
+    }
  });
 
 // @desc - Update user

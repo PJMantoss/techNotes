@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt"); //For hashing passwords in the database
 // @access Private
 const getAllUsers = asyncHandler(async (req, res) => {
     const users = await User.find().select("-password").lean();
-    if(!users){
+    if(!users?.length){
         return res.status(400).json({ message: "Users Not Found!" })
     }
     res.json(users);
@@ -93,7 +93,7 @@ const updateUser = asyncHandler(async (req, res) => {
 // @desc - Delete user
 // @route DELETE /users 
 // @access Private
-const deleteUser = asyncHandler(async = (req, res) => {
+const deleteUser = asyncHandler(async (req, res) => {
     const {id} = req.body;
 
     if(!id){

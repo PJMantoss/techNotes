@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt"); //For hashing passwords in the database
 // @desc - GET All users
 // @route GET /users 
 // @access Private
-const getAllUsers = asyncHandler(async = (req, res) => {
+const getAllUsers = asyncHandler(async (req, res) => {
     const users = await User.find().select("-password").lean();
     if(!users){
         return res.status(400).json({ message: "Users Not Found!" })
@@ -17,7 +17,7 @@ const getAllUsers = asyncHandler(async = (req, res) => {
 // @desc - Create new users
 // @route POST /users 
 // @access Private
-const createNewUser = asyncHandler(async = (req, res) => {
+const createNewUser = asyncHandler(async (req, res) => {
     const { username, password, roles } = req.body;
 
     // Confirm Data
@@ -54,7 +54,21 @@ const createNewUser = asyncHandler(async = (req, res) => {
 // @desc - Update user
 // @route PATCH /users 
 // @access Private
-const updateUser = asyncHandler(async = (req, res) => {});
+const updateUser = asyncHandler(async (req, res) => {
+    const {id, username, password, active, roles} = req.body;
+
+    // Confirm data
+    if(!id || !username || !Array.isArray(roles) || !roles.length || typeof active !== "boolean"){
+        return res.status(400).json({ message: "All fields are required" });
+    };
+
+    const user = await User.findById(id).exec();
+
+    if(!user){
+        return res.status(400).json({ message: "User Not found" });
+    }
+
+});
 
 // @desc - Delete user
 // @route DELETE /users 

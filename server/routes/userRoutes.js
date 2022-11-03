@@ -11,7 +11,12 @@ router.route("/")
 
 // @desc - GET All users
 // @route GET /users 
-// @access private
-const getAllUsers = asyncHandler(async = () => {})
+// @access Private
+const getAllUsers = asyncHandler(async = (req, res) => {});
+
+// @desc - Create new users
+// @route POST /users 
+// @access Private
+const createNewUsers = asyncHandler(async = (req, res) => {});
 
 module.exports = router;

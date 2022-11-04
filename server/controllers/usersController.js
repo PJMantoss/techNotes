@@ -61,7 +61,7 @@ const updateUser = asyncHandler(async (req, res) => {
     if(!id || !username || !Array.isArray(roles) || !roles.length || typeof active !== "boolean"){
         return res.status(400).json({ message: "All fields, except password, are required" });
     };
-
+    // Check to see if user exist to update 
     const user = await User.findById(id).exec();
 
     if(!user){

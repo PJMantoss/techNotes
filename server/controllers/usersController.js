@@ -55,7 +55,7 @@ const createNewUser = asyncHandler(async (req, res) => {
 // @route PATCH /users 
 // @access Private
 const updateUser = asyncHandler(async (req, res) => {
-    const {id, username, roles, active, password} = req.body;
+    const {id, username, roles, active, password} = req.body
 
     // Confirm data
     if(!id || !username || !Array.isArray(roles) || !roles.length || typeof active !== "boolean"){
@@ -100,8 +100,8 @@ const deleteUser = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "User ID Required!" })
     };
 
-    const notes = await Note.findOne({ user: id }).lean().exec();
-    if(notes?.length){
+    const note = await Note.findOne({ user: id }).lean().exec();
+    if(notes){
         return res.status(400).json({ message: "User has assigned Notes" })
     };
 

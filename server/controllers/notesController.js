@@ -95,7 +95,13 @@ const updateNote = asyncHandler(async (req, res) => {
 // @desc - Delete note
 // @route DELETE /notes 
 // @access Private
-const deleteNote = asyncHandler(async (req, res) => {});
+const deleteNote = asyncHandler(async (req, res) => {
+    const {id} = req.body;
+
+    if(!id){
+        return res.status(400).json({ message: "Note ID Required!" })
+    };
+});
 
 module.exports = {
     getAllNotes,

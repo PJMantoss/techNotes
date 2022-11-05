@@ -85,6 +85,10 @@ const updateNote = asyncHandler(async (req, res) => {
     note.title = title
     note.text = text
 
+    const updatedNote = await note.save();
+
+    res.json({ message: `${updatedNote.user} updated` });
+
 });
 
 // @desc - Delete note

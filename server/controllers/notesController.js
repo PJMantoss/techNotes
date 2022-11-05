@@ -27,6 +27,17 @@ const getAllNotes = asyncHandler(async (req, res) => {
 // @access Private
 const createNewNote = asyncHandler(async (req, res) => {
     const { user, title, text } = req.body;
+
+    // confirm data
+    if(!user || !title || !text){
+        return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const noteObj = {
+        user,
+        title,
+        text
+    };
 });
 
 // @desc - Update note

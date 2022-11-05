@@ -66,6 +66,9 @@ const updateNote = asyncHandler(async (req, res) => {
     if(!id || !user || !title || !text || typeof completed !== "boolean"){
         return res.status(400).json({ message: "All fields are required" });
     };
+
+    // Check to see if note exist to update 
+    const note = await Note.findById(id).exec();
 });
 
 // @desc - Delete note

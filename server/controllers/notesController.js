@@ -33,6 +33,13 @@ const createNewNote = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "All fields are required" });
     }
 
+    // Check for duplicates
+    const duplicate = await Note.findOne({ title }).lean().exec();
+
+    if(duplicate){
+        res.status(409).json({ message: "Duplicate Note title found" });
+    }
+
     const noteObj = {
         user,
         title,

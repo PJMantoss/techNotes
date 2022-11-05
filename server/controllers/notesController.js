@@ -38,6 +38,15 @@ const createNewNote = asyncHandler(async (req, res) => {
         title,
         text
     };
+
+    // Create and store new note
+    const note = await Note.create(noteObj);
+
+    if(note){
+        res.status(201).json({ message: "New Note Created" });
+    } else {
+        res.status(400).json({ message: "Invalid Note data received" })
+    }
 });
 
 // @desc - Update note

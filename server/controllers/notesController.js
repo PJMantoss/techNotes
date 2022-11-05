@@ -59,7 +59,14 @@ const createNewNote = asyncHandler(async (req, res) => {
 // @desc - Update note
 // @route PATCH /note
 // @access Private
-const updateNote = asyncHandler(async (req, res) => {});
+const updateNote = asyncHandler(async (req, res) => {
+    const { id, user, title, text } = req.body;
+
+    // Confirm data
+    if(!id || !user || !title || !text || typeof completed !== "boolean"){
+        return res.status(400).json({ message: "All fields are required" });
+    };
+});
 
 // @desc - Delete note
 // @route DELETE /notes 

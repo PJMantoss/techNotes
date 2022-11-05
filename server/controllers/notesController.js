@@ -60,7 +60,7 @@ const createNewNote = asyncHandler(async (req, res) => {
 // @route PATCH /note
 // @access Private
 const updateNote = asyncHandler(async (req, res) => {
-    const { id, user, title, text } = req.body;
+    const { id, user, title, text, completed } = req.body;
 
     // Confirm data
     if(!id || !user || !title || !text || typeof completed !== "boolean"){
@@ -74,7 +74,7 @@ const updateNote = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "Note Not found" });
     };
 
-    // Check for duplicate
+    // Check for duplicate title
     const duplicate = await Note.findOne({ title }).lean().exec();
     // Allow Updates to the Original note
     if(duplicate && duplicate?._id.toString() !== id){
@@ -84,10 +84,11 @@ const updateNote = asyncHandler(async (req, res) => {
     note.user = user
     note.title = title
     note.text = text
+    note.completed = completed
 
     const updatedNote = await note.save();
 
-    res.json({ message: `${updatedNote.user} updated` });
+    res.json({ message: `${updatedNote.title} updated` });
 
 });
 

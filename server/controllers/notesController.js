@@ -15,9 +15,12 @@ const getAllNotes = asyncHandler(async (req, res) => {
     }
 
     // Add username to each note before sending the response
-    const notesWithUSer = await Promise.all(async notes.map(() => {}));
+    const notesWithUSer = await Promise.all(notes.map(async (note) => {
+        const user = await User.findById(note.user).lean().exec();
+        return { ...note, username: user.username }
+    }));
 
-    res.json(notes);
+    res.json(notesWithUSer);
 });
 
 // @desc - Create new notes

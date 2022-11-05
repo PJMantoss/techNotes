@@ -101,6 +101,23 @@ const deleteNote = asyncHandler(async (req, res) => {
     if(!id){
         return res.status(400).json({ message: "Note ID Required!" })
     };
+
+    const user = await User.findOne({ note: id }).lean().exec();
+    if(user){
+        return res.status(400).json({ message: "Not has a User" })
+    };
+
+    const note = await Note.findById(id).exec();
+
+    if(!note){
+        return res.status(400).json({ message: "Note Not found!" });
+    };
+
+    const result = await note.deleteOne();
+
+    const reply = `Note ${result.title} with ID ${result._id} deleted`;
+
+    res.json(reply)
 });
 
 module.exports = {

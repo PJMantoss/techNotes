@@ -37,7 +37,7 @@ const createNewNote = asyncHandler(async (req, res) => {
     const duplicate = await Note.findOne({ title }).lean().exec();
 
     if(duplicate){
-        res.status(409).json({ message: "Duplicate Note title found" });
+        return res.status(409).json({ message: "Duplicate Note title found" });
     }
 
     const noteObj = {
@@ -50,9 +50,9 @@ const createNewNote = asyncHandler(async (req, res) => {
     const note = await Note.create(noteObj);
 
     if(note){
-        res.status(201).json({ message: "New Note Created" });
+        return res.status(201).json({ message: "New Note Created" });
     } else {
-        res.status(400).json({ message: "Invalid Note data received" })
+        return res.status(400).json({ message: "Invalid Note data received" })
     }
 });
 

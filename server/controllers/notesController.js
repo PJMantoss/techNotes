@@ -69,6 +69,22 @@ const updateNote = asyncHandler(async (req, res) => {
 
     // Check to see if note exist to update 
     const note = await Note.findById(id).exec();
+
+    if(!note){
+        return res.status(400).json({ message: "Note Not found" });
+    };
+
+    // Check for duplicate
+    const duplicate = await Note.findOne({ title }).lean().exec();
+    // Allow Updates to the Original note
+    if(duplicate && duplicate?._id.toString() !== id){
+        return res.status(409).json({ message: "Duplicate Note title" });
+    };
+
+    note.user = user
+    note.title = title
+    note.text = text
+
 });
 
 // @desc - Delete note

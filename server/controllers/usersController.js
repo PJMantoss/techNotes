@@ -7,7 +7,9 @@ const bcrypt = require("bcrypt"); //For hashing passwords in the database
 // @route GET /users 
 // @access Private
 const getAllUsers = asyncHandler(async (req, res) => {
+    // Get all users from Database (MongoDB)
     const users = await User.find().select("-password").lean();
+    // if no user is foundreturn a message
     if(!users?.length){
         return res.status(400).json({ message: "Users Not Found!" })
     }

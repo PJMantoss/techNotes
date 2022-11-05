@@ -25,7 +25,9 @@ const getAllNotes = asyncHandler(async (req, res) => {
 // @desc - Create new notes
 // @route POST /notes 
 // @access Private
-const createNewNote = asyncHandler(async (req, res) => {});
+const createNewNote = asyncHandler(async (req, res) => {
+    const { user, title, text } = req.body;
+});
 
 // @desc - Update note
 // @route PATCH /note

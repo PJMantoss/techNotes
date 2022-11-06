@@ -3,7 +3,9 @@ import { Outlet } from 'react-router-dom';
 
 const DashLayout = () => {
   return (
-    <div>DashLayout</div>
+    <div className='dash-layout'>
+        <Outlet />
+    </div>
   )
 }
 

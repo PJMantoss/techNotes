@@ -6,10 +6,10 @@ const DashHeader = () => {
     const content = (
         <header className='dash-header'>
             <div className='dash-header__container'>
-                <Link>
+                <Link to="/dash/notes">
                     <h1 className='dash-header__title'>techNotes</h1>
                 </Link>
-                <nav className=''></nav>
+                <nav className='dash-header__nav'></nav>
             </div>
         </header>
     );

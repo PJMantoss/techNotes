@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 const DashHeader = () => {
 
     const content = (
-        <header>
-            <div>
-                <Link></Link>
-                <nav></nav>
+        <header className=''>
+            <div className=''>
+                <Link>
+                    <h1 className=''></h1>
+                </Link>
+                <nav className=''></nav>
             </div>
         </header>
     );

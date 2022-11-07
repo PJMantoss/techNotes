@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DashHeader = () => {
   return (
@@ -6,4 +7,4 @@ const DashHeader = () => {
   )
 }
 
-export default DashHeader
+export default DashHeader;

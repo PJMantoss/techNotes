@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse } from '@fortawesome/free-solid-svg-icons';
 
 const DashFooter = () => {
 
@@ -8,9 +10,7 @@ const DashFooter = () => {
             <p>Status:</p>
         </footer>
     )
-  return (
-    <div>DashFooter</div>
-  )
+  return content;
 }
 
 export default DashFooter;

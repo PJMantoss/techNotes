@@ -6,4 +6,4 @@ const DashFooter = () => {
   )
 }
 
-export default DashFooter
+export default DashFooter;

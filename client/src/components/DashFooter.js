@@ -7,7 +7,17 @@ const DashFooter = () => {
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
-    const onGoHome = () => navigate('/dash');
+    const onGoHomeClicked = () => navigate('/dash');
+
+    let goHomeButton = null;
+
+    if(pathname !== '/dash'){
+        goHomeButton = (
+            <button>
+                <FontAwesomeIcon icon={faHouse} />
+            </button>
+        )
+    }
 
     const content = (
         <footer className='dash-footer'>

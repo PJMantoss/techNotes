@@ -20,9 +20,8 @@ const Welcome = () => {
             </p>
         </section>
     );
-    return (
-    <div>Welcome</div>
-  )
+    
+    return content;
 }
 
 export default Welcome;

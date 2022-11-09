@@ -16,7 +16,7 @@ function App() {
 
         {/* Protected Route - Dashboard Layout */}
         <Route path="dash" element={<DashLayout />}>
-          
+
           <Route index element={<Welcome />} />
 
           <Route path="notes">

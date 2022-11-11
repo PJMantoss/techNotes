@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 
+import { selectNoteById } from "./notesApiSlice";
+
 const Note = () => {
   return (
     <div>Note</div>

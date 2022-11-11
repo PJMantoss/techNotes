@@ -1,54 +1,54 @@
 import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 import { apiSlice } from "../../app/api/apiSlice";
 
-const usersAdapter = createEntityAdapter({});
+const notesAdapter = createEntityAdapter({});
 
-const initialState = usersAdapter.getInitialState()
+const initialState = notesAdapter.getInitialState()
 
-export const usersApiSlice = apiSlice.injectEndpoints({
+export const notesApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
-        getUsers: builder.query({
-            query: () => '/users',
+        getNotes: builder.query({
+            query: () => '/notes',
             validateStatus: (response, result) => {
                 return response.status === 200 && !result.isError
             },
             keepUnusedDataFor: 5,
             transformResponse: responseData => {
-                const loadedUsers = responseData.map(user => {
-                    user.id = user._id
-                    return user
+                const loadedNotes = responseData.map(note => {
+                    note.id = note._id
+                    return note
                 });
-                return usersAdapter.setAll(initialState, loadedUsers)
+                return notesAdapter.setAll(initialState, loadedNotes)
             },
             providesTags: (result, error, arg) => {
                 if (result?.ids) {
                     return [
-                        { type: 'User', id: 'LIST' },
-                        ...result.ids.map(id => ({ type: 'User', id }))
+                        { type: 'note', id: 'LIST' },
+                        ...result.ids.map(id => ({ type: 'note', id }))
                     ]
-                } else return [{ type: 'User', id: 'LIST' }]
+                } else return [{ type: 'note', id: 'LIST' }]
             }
         }),
     }),
 });
 
 export const {
-    useGetUSersQuery,
-} = usersApiSlice;
+    useGetNotesQuery,
+} = notesApiSlice;
 
 // returns the query result object
-export const selectUsersResult = usersApiSlice.endpoints.getUsers.select();
+export const selectNotesResult = notesApiSlice.endpoints.getNotes.select();
 
 // creates memoized selector
-const selectUsersData = createSelector(
-    selectUsersResult,
-    usersResult => usersResult.data // normalized state object with ids & entities
+const selectNotesData = createSelector(
+    selectNotesResult,
+    notesResult => notesResult.data // normalized state object with ids & entities
 )
 
 //getSelectors creates these selectors and we rename them with aliases using destructuring
 export const {
-    selectAll: selectAllUsers,
-    selectById: selectUserById,
-    selectIds: selectUserIds
-    // Pass in a selector that returns the users slice of state
-} = usersAdapter.getSelectors(state => selectUsersData(state) ?? initialState)
+    selectAll: selectAllNotes,
+    selectById: selectNoteById,
+    selectIds: selectNoteIds
+    // Pass in a selector that returns the notes slice of state
+} = notesAdapter.getSelectors(state => selectNotesData(state) ?? initialState)

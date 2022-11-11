@@ -19,9 +19,7 @@ const UsersList = () => {
     content = <p className="errmsg"> {error?.data?.message} </p>
   }
 
-  return (
-    <h1>UsersList</h1>
-  )
+  return content;
 }
 
 export default UsersList;

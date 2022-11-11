@@ -31,3 +31,10 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         }),
     }),
 });
+
+export const {
+    useGetUSersQuery,
+} = usersApiSlice;
+
+// returns the query result object
+export const selectUsersResult = usersApiSlice.endpoints.getUsers.select();

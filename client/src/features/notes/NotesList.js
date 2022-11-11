@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGetUSersQuery } from '../users/usersApiSlice';
+import Note from "./Note";
 
 const NotesList = () => {
   const {

@@ -9,7 +9,15 @@ const UsersList = () => {
     isSuccess,
     isError,
     error
-  } = useGetUSersQuery;
+  } = useGetUSersQuery();
+
+  let content
+
+  if(isLoading) content = <p>Loading...</p>
+
+  if(isError){
+    content = <p> {error?.data?.message} </p>
+  }
 
   return (
     <h1>UsersList</h1>
